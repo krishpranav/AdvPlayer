@@ -7,16 +7,8 @@
 //
 
 // imports
-//
-//  PSVR.h
-//  MacMorpheus
-//
-//  Created by emoRaivis on 20.10.2016.
-//  Copyright © 2016 emoRaivis. All rights reserved.
-//
-
-// imports
 #import <Cocoa/Cocoa.h>
+
 
 @interface PSVR : NSObject
 
@@ -26,9 +18,11 @@
 
 @end
 
+
 extern NSString * const PSVRDataReceivedNotification;
 extern NSString * const PSVRDataReceivedNotificationDataKey;
 
+// ----
 
 @interface PSVRData : NSObject
 

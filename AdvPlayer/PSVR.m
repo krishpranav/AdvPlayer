@@ -6,7 +6,8 @@
 //  Copyright © 2021 krisna pranav. All rights reserved.
 //
 
-// imports
+
+//imports
 #import "PSVR.h"
 #import <IOKit/hid/IOHIDLib.h>
 
@@ -15,10 +16,10 @@
 - (void) _processHIDValue: (IOHIDValueRef) hidValue;
 @end
 
+
 static void PSVR_HID_InputValueCallback(void * inContext, IOReturn inResult, void * inSender, IOHIDValueRef inValueRef) {
     [(__bridge PSVR *)inContext _processHIDValue: inValueRef];
 }
-
 
 @implementation PSVR
 

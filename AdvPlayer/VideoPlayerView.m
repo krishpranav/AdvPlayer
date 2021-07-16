@@ -102,34 +102,34 @@
 }
 
 - (void) keyUp: (NSEvent *) event {
-    if(event.keyCode == 53) {
+    if(event.keyCode == 53) { // ESC
         if([self isInFullScreenMode]) {
             [self toggleFullscreen];
         } else {
             [self.window close];
         }
-    } else if(event.keyCode == 36) {
+    } else if(event.keyCode == 36) { // ENTER
         [self toggleFullscreen];
-    } else if(event.keyCode == 49) {
+    } else if(event.keyCode == 49) { // SPACE
         if (player.rate != 0 && player.error == nil) {
             [player pause];
         } else {
             [player play];
         }
-    } else if(event.keyCode == 124) {
+    } else if(event.keyCode == 124) { // RIGHT
         
         [self advancePlaybackBySeconds: 15];
         
-    } else if(event.keyCode == 123) {
+    } else if(event.keyCode == 123) { // LEFT
         
         [self advancePlaybackBySeconds: -15];
         
-    } else if(event.keyCode == 34) {
+    } else if(event.keyCode == 34) { // i
         
         leftView.showsStatistics = !leftView.showsStatistics;
         rightView.showsStatistics = leftView.showsStatistics;
         
-    } else if(event.keyCode == 15) {
+    } else if(event.keyCode == 15) { // r
         
         leftView.yaw = 0;
         leftView.pitch = 0;
@@ -159,6 +159,7 @@
     
     leftView.yaw += (data.yawAcceleration * accelerationCoef);
     leftView.pitch += (data.pitchAcceleration * accelerationCoef);
+    //    leftView.roll += (data.rollAcceleration * accelerationCoef);
     
     [self syncRightCameraFromLeft];
 }
@@ -175,6 +176,7 @@
 
 @end
 
+
 @implementation VideoPlayerViewProjectionMethod
 
 + (NSArray *) allProjectionMethods {
@@ -184,7 +186,7 @@
     if(!projectionMethods) {
         
         projectionMethods = @[
-                              
+
                               
                               [VideoPlayerViewProjectionMethod projectionMethodWithName: @"2D 360° Regular" eyeLayerHandler: ^(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView) {
                                   
@@ -223,7 +225,7 @@
                                   eyeLayer.frame = eyeFrame;
                                   
                                   eyeView.projectionTransform = SCNMatrix4MakeRotation(M_PI / 2.0, 0, 1, 0);
-                                  
+
                                   
                               }]
                               
