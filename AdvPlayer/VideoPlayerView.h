@@ -18,4 +18,7 @@
 - (void) loadURL: (NSURL *) movieURL projectionMethod: (VideoPlayerViewProjectionMethod *) projectionMethod;
 - (void) toggleFullscreen;
 
+@property (nonatomic, readonly) NSURL * URL;
+@property (nonatomic, readonly) VideoPlayerViewProjectionMethod * projectionMethod;
+
 @end
