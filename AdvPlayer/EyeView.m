@@ -44,5 +44,13 @@
     dome.materials = @[contentMaterial];
 }
 
+- (id) contents {
+    return dome.materials.firstObject.diffuse.contents;
+}
+
+- (void) setProjectionTransform: (SCNMatrix4)projectionTransform {
+    domeNode.transform = projectionTransform;
+}
+
 
 @end
