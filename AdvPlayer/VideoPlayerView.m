@@ -12,7 +12,6 @@
 #import <SceneKit/SceneKit.h>
 
 
-
 @implementation VideoPlayerView {
     EyeView * leftView;
     EyeView * rightView;
@@ -103,34 +102,34 @@
 }
 
 - (void) keyUp: (NSEvent *) event {
-    if(event.keyCode == 53) { // ESC
+    if(event.keyCode == 53) {
         if([self isInFullScreenMode]) {
             [self toggleFullscreen];
         } else {
             [self.window close];
         }
-    } else if(event.keyCode == 36) { // ENTER
+    } else if(event.keyCode == 36) {
         [self toggleFullscreen];
-    } else if(event.keyCode == 49) { // SPACE
+    } else if(event.keyCode == 49) {
         if (player.rate != 0 && player.error == nil) {
             [player pause];
         } else {
             [player play];
         }
-    } else if(event.keyCode == 124) { // RIGHT
+    } else if(event.keyCode == 124) {
         
         [self advancePlaybackBySeconds: 15];
         
-    } else if(event.keyCode == 123) { // LEFT
+    } else if(event.keyCode == 123) {
         
         [self advancePlaybackBySeconds: -15];
         
-    } else if(event.keyCode == 34) { // i
+    } else if(event.keyCode == 34) {
         
         leftView.showsStatistics = !leftView.showsStatistics;
         rightView.showsStatistics = leftView.showsStatistics;
         
-    } else if(event.keyCode == 15) { // r
+    } else if(event.keyCode == 15) {
         
         leftView.yaw = 0;
         leftView.pitch = 0;
@@ -170,10 +169,9 @@
     rightView.roll = leftView.roll;
 }
 
-void dealloc {
+- (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
-
 
 @end
 
@@ -187,7 +185,6 @@ void dealloc {
         
         projectionMethods = @[
                               
-
                               
                               [VideoPlayerViewProjectionMethod projectionMethodWithName: @"2D 360° Regular" eyeLayerHandler: ^(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView) {
                                   
@@ -227,7 +224,7 @@ void dealloc {
                                   
                                   eyeView.projectionTransform = SCNMatrix4MakeRotation(M_PI / 2.0, 0, 1, 0);
                                   
-
+                                  
                               }]
                               
                               ];
@@ -237,5 +234,17 @@ void dealloc {
     return projectionMethods;
 }
 
+- (instancetype) initWithName: (NSString *) name eyeLayerHandler: (void (^)(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView)) eyeLayerHandler {
+    if((self = [super init])) {
+        _name = name;
+        _eyeLayerHandler = eyeLayerHandler;
+    }
+    return self;
+}
+
++ (instancetype) projectionMethodWithName: (NSString *) name eyeLayerHandler: (void (^)(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView)) eyeLayerHandler {
+    return [[self alloc] initWithName: name eyeLayerHandler: eyeLayerHandler];
+}
 
 @end
+
