@@ -15,3 +15,16 @@
 @implementation AppDelegate {
     IBOutlet NSWindow * mainWindow;
 }
+
+
+- (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
+    
+    NSURL * targetURL = nil;
+    VideoPlayerViewProjectionMethod * targetProjectionMethod = nil;
+    
+    if (!targetURL) {
+        NSOpenPanel * openDialog = [NSOpenPanel openPanel];
+    }
+}
+
+@end
