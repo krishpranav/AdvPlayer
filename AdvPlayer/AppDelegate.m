@@ -11,7 +11,6 @@
 #import "PSVR.h"
 #import "VideoPlayerView.h"
 
-
 @implementation AppDelegate {
     IBOutlet NSWindow * mainWindow;
 }
@@ -20,6 +19,7 @@
     
     NSURL * targetURL = nil;
     VideoPlayerViewProjectionMethod * targetProjectionMethod = nil;
+    
     
     if(!targetURL) {
         NSOpenPanel * openDialog = [NSOpenPanel openPanel];
@@ -60,4 +60,9 @@
     [videoPlayerView toggleFullscreen];
     
 }
+
+- (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) sender {
+    return YES;
+}
+
 @end
