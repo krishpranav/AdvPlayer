@@ -48,7 +48,7 @@
     return dome.materials.firstObject.diffuse.contents;
 }
 
-- (void) setProjectionTransform: (SCNMatrix4)projectionTransform {
+- (void) setProjectionTransform: (SCNMatrix4) projectionTransform {
     domeNode.transform = projectionTransform;
 }
 
@@ -61,8 +61,13 @@
     [self applyCameraTransform];
 }
 
-- (void) setPitch: (float)pitch {
+- (void) setPitch: (float) pitch {
     _pitch = pitch;
+    [self applyCameraTransform];
+}
+
+- (void) setRoll: (float) roll {
+    _roll = roll;
     [self applyCameraTransform];
 }
 
@@ -76,6 +81,5 @@
     
     cameraNode.transform = cameraMatrix;
 }
-
 
 @end
