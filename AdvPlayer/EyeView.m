@@ -35,5 +35,14 @@
     return self;
 }
 
+- (void) setContents: (id) contents {
+    SCNMaterial * contentMaterial = [SCNMaterial material];
+    contentMaterial.cullMode = SCNCullModeFront;
+    contentMaterial.diffuse.contents = contents;
+    contentMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(-1, 1, 1);
+    contentMaterial.diffuse.wrapS = SCNWrapModeRepeat;
+    dome.materials = @[contentMaterial];
+}
+
 
 @end
