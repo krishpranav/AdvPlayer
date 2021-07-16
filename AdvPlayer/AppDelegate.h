@@ -6,10 +6,9 @@
 //  Copyright © 2021 krisna pranav. All rights reserved.
 //
 
+// imports
 #import <Cocoa/Cocoa.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-
 @end
-
