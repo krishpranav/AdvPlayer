@@ -52,5 +52,19 @@
     domeNode.transform = projectionTransform;
 }
 
+- (SCNMatrix4) projectionTransform {
+    return domeNode.transform;
+}
+
+- (void) setYaw: (float) yaw {
+    _yaw = yaw;
+    [self applyCameraTransform];
+}
+
+- (void) setPitch: (float)pitch {
+    _pitch = pitch;
+    [self applyCameraTransform];
+}
+
 
 @end
