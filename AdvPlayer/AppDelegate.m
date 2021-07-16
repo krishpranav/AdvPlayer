@@ -22,9 +22,24 @@
     NSURL * targetURL = nil;
     VideoPlayerViewProjectionMethod * targetProjectionMethod = nil;
     
-    if (!targetURL) {
+    if(!targetURL) {
         NSOpenPanel * openDialog = [NSOpenPanel openPanel];
-    }
+        [openDialog setCanChooseFiles: YES];
+        [openDialog setAllowedFileTypes: @[@"mp4", @"mov", @"m4v"]];
+        [openDialog setAllowsOtherFileTypes: NO];
+        
+        NSPopUpButton * videoTypeSelector;
+        {
+            videoTypeSelector = [[NSPopUpButton alloc] initWithFrame: NSMakeRect(0.0, 0.0, 100.0, 44.0) pullsDown: NO];
+            videoTypeSelector.menu = [[NSMenu alloc] init];
+            
+            for(VideoPlayerViewProjectionMethod * projectionMethod in [VideoPlayerViewProjectionMethod allProjectionMethods]) {
+                [videoTypeSelector.menu addItemWithTitle: projectionMethod.name action: nil keyEquivalent: @""].representedObject = projectionMethod;
+            }
+            
+            openDialog.accessoryView = videoTypeSelector;
+            openDialog.accessoryViewDisclosed = YES;
+        }
 }
 
 @end
