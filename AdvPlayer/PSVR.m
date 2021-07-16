@@ -64,3 +64,7 @@ static void PSVR_HID_InputValueCallback(void * inContext, IOReturn inResult, voi
 }
 
 @end
+
+
+NSString * const PSVRDataReceivedNotification = @"PSVRDataReceivedNotification";
+NSString * const PSVRDataReceivedNotificationDataKey = @"PSVRDataReceivedNotificationDataKey";
