@@ -20,4 +20,27 @@
     AVPlayer * player;
 }
 
+- (id) initWithFrame: (NSRect) frameRect {
+    if((self = [super initWithFrame: frameRect])) {
+        
+        NSRect r = self.bounds;
+        r.size.width /= 2.0;
+        leftView = [[EyeView alloc] initWithFrame: r];
+        leftView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable | NSViewMaxXMargin);
+        [self addSubview: leftView];
+        
+        r.origin.x += r.size.width;
+        rightView = [[EyeView alloc] initWithFrame: r];
+        rightView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable | NSViewMinXMargin);
+        [self addSubview: rightView];
+        
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(psvrDataReceivedNotification:)
+                                                     name: PSVRDataReceivedNotification
+                                                   object: [PSVR sharedInstance]];
+        
+    }
+    return self;
+}
+
 @end
