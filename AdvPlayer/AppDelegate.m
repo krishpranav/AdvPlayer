@@ -16,7 +16,6 @@
     IBOutlet NSWindow * mainWindow;
 }
 
-
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
     
     NSURL * targetURL = nil;
@@ -40,6 +39,25 @@
             openDialog.accessoryView = videoTypeSelector;
             openDialog.accessoryViewDisclosed = YES;
         }
+        
+        if([openDialog runModal] != NSModalResponseOK) {
+            [NSApp terminate: nil];
+        }
+        
+        targetURL = openDialog.URL;
+        targetProjectionMethod = videoTypeSelector.selectedItem.representedObject;
+    }
+    
+    VideoPlayerView * videoPlayerView = [[VideoPlayerView alloc] initWithFrame: mainWindow.contentView.bounds];
+    videoPlayerView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
+    [mainWindow.contentView addSubview: videoPlayerView];
+    [videoPlayerView loadURL: targetURL projectionMethod: targetProjectionMethod];
+    [mainWindow makeFirstResponder: videoPlayerView];
+    
+    [mainWindow setTitleWithRepresentedFilename: targetURL.path];
+    [mainWindow makeKeyAndOrderFront: nil];
+    
+    [videoPlayerView toggleFullscreen];
+    
 }
-
 @end
