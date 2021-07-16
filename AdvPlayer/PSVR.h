@@ -22,3 +22,12 @@
 extern NSString * const PSVRDataReceivedNotification;
 extern NSString * const PSVRDataReceivedNotificationDataKey;
 
+@interface PSVRData : NSObject
+
+- (id) initWithData: (NSData *) data;
+
+@property (readonly) NSData * rawData;
+
+@property (readonly) int16_t yawAccerleration;
+
+@end
