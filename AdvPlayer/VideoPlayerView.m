@@ -102,4 +102,46 @@
     [player seekToTime: CMTimeAdd(player.currentTime, CMTimeMake(sec, 1)) toleranceBefore: kCMTimeZero toleranceAfter: kCMTimeZero];
 }
 
+- (void) keyUp: (NSEvent *) event {
+    if(event.keyCode == 53) { // ESC
+        if([self isInFullScreenMode]) {
+            [self toggleFullscreen];
+        } else {
+            [self.window close];
+        }
+    } else if(event.keyCode == 36) { // ENTER
+        [self toggleFullscreen];
+    } else if(event.keyCode == 49) { // SPACE
+        if (player.rate != 0 && player.error == nil) {
+            [player pause];
+        } else {
+            [player play];
+        }
+    } else if(event.keyCode == 124) { // RIGHT
+        
+        [self advancePlaybackBySeconds: 15];
+        
+    } else if(event.keyCode == 123) { // LEFT
+        
+        [self advancePlaybackBySeconds: -15];
+        
+    } else if(event.keyCode == 34) { // i
+        
+        leftView.showsStatistics = !leftView.showsStatistics;
+        rightView.showsStatistics = leftView.showsStatistics;
+        
+    } else if(event.keyCode == 15) { // r
+        
+        leftView.yaw = 0;
+        leftView.pitch = 0;
+        leftView.roll = 0;
+        [self syncRightCameraFromLeft];
+        
+    } else {
+        
+        NSLog(@"Key Down: %d", event.keyCode);
+        
+    }
+}
+
 @end
