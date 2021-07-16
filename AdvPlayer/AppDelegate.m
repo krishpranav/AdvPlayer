@@ -6,22 +6,12 @@
 //  Copyright © 2021 krisna pranav. All rights reserved.
 //
 
+// imports
 #import "AppDelegate.h"
+#import "PSVR.h"
+#import "VideoPlayerView.h"
 
-@interface AppDelegate ()
 
-@end
-
-@implementation AppDelegate
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+@implementation AppDelegate {
+    IBOutlet NSWindow * mainWindow;
 }
-
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
-}
-
-
-@end
