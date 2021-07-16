@@ -50,4 +50,17 @@ static void PSVR_HID_InputValueCallback(void * inContext, IOReturn inResult, voi
     return self;
 }
 
+- (void) _processHIDValue: (IOHIDValueRef) hidValue {
+    if(IOHIDValueGetLength(hidValue) != 64) {
+        return;
+    }
+    
+    NSData * data = [NSData dataWithBytes: IOHIDValueGetBytePtr(hidValue) length: 64];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName: PSVRDataReceivedNotification
+                                                        object: self
+                                                      userInfo: @{ PSVRDataReceivedNotificationDataKey : [[PSVRData alloc] initWithData: data] }];
+    
+}
+
 @end
