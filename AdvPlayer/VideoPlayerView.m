@@ -176,3 +176,66 @@ void dealloc {
 
 
 @end
+
+@implementation VideoPlayerViewProjectionMethod
+
++ (NSArray *) allProjectionMethods {
+    
+    static NSArray * projectionMethods = nil;
+    
+    if(!projectionMethods) {
+        
+        projectionMethods = @[
+                              
+
+                              
+                              [VideoPlayerViewProjectionMethod projectionMethodWithName: @"2D 360° Regular" eyeLayerHandler: ^(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView) {
+                                  
+                                  CGRect eyeFrame = CGRectMake(0, 0, contentSize.width, contentSize.height);
+                                  eyeLayer.frame = eyeFrame;
+                                  
+                                  eyeView.projectionTransform = SCNMatrix4MakeRotation(M_PI, 0, 1, 0);;
+                                  
+                              }],
+                              
+                              [VideoPlayerViewProjectionMethod projectionMethodWithName: @"3D 360° Horizontal (Stacked)" eyeLayerHandler: ^(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView) {
+                                  
+                                  CGRect eyeFrame = CGRectMake(0, 0, contentSize.width, round(contentSize.height / 2.0));
+                                  if(eye == 1) {
+                                      eyeFrame.origin.y += eyeFrame.size.height;
+                                  }
+                                  eyeLayer.frame = eyeFrame;
+                                  
+                                  eyeView.projectionTransform = SCNMatrix4MakeRotation(M_PI, 0, 1, 0);;
+                                  
+                              }],
+                              
+                              [VideoPlayerViewProjectionMethod projectionMethodWithName: @"3D 180° Vertical (Side By Side)" eyeLayerHandler: ^(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView) {
+                                  
+                                  CGRect eyeFrame = CGRectMake(0, 0, contentSize.width, contentSize.height);
+                                  if(eye == 1) {
+                                      CGRect playerFrame = playerLayer.frame;
+                                      playerFrame.origin.x -= round(eyeFrame.size.width / 2.0);
+                                      playerLayer.frame = playerFrame;
+                                  } else {
+                                      CALayer * maskLayer = [CALayer layer];
+                                      maskLayer.backgroundColor = [NSColor redColor].CGColor;
+                                      maskLayer.frame = CGRectMake(0, 0, (contentSize.width / 2.0), contentSize.height);
+                                      playerLayer.mask = maskLayer;
+                                  }
+                                  eyeLayer.frame = eyeFrame;
+                                  
+                                  eyeView.projectionTransform = SCNMatrix4MakeRotation(M_PI / 2.0, 0, 1, 0);
+                                  
+
+                              }]
+                              
+                              ];
+        
+    }
+    
+    return projectionMethods;
+}
+
+
+@end
