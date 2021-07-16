@@ -66,5 +66,16 @@
     [self applyCameraTransform];
 }
 
+- (void) applyCameraTransform {
+    
+    SCNMatrix4 cameraMatrix = SCNMatrix4Identity;
+    
+    cameraMatrix = SCNMatrix4Mult(cameraMatrix, SCNMatrix4MakeRotation((_roll * M_PI / 180.0), 0, 0, 1));
+    cameraMatrix = SCNMatrix4Mult(cameraMatrix, SCNMatrix4MakeRotation((_pitch * M_PI / 180.0), 1, 0, 0));
+    cameraMatrix = SCNMatrix4Mult(cameraMatrix, SCNMatrix4MakeRotation((_yaw * M_PI / 180.0), 0, 1, 0));
+    
+    cameraNode.transform = cameraMatrix;
+}
+
 
 @end
