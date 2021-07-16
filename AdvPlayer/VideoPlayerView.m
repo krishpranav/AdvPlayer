@@ -43,4 +43,18 @@
     return self;
 }
 
+- (void) loadURL: (NSURL *) movieURL projectionMethod: (VideoPlayerViewProjectionMethod *) projectionMethod {
+    if(player) {
+        return;
+    }
+    
+    _URL = movieURL;
+    _projectionMethod = projectionMethod;
+    
+    player = [AVPlayer playerWithURL: _URL];
+    [player addObserver: self forKeyPath: @"currentItem.presentationSize" options: 0 context: 0];
+    [player play];
+    
+}
+
 @end
