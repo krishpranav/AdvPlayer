@@ -86,4 +86,20 @@
     }
 }
 
+- (void) toggleFullscreen {
+    if([self isInFullScreenMode]) {
+        [self exitFullScreenModeWithOptions: @{}];
+        [NSCursor unhide];
+    } else {
+        [self enterFullScreenMode: [PSVR screen] withOptions: @{
+                                                                NSFullScreenModeAllScreens: @(NO)
+                                                                }];
+        [NSCursor hide];
+    }
+}
+
+- (void) advancePlaybackBySeconds: (int) sec {
+    [player seekToTime: CMTimeAdd(player.currentTime, CMTimeMake(sec, 1)) toleranceBefore: kCMTimeZero toleranceAfter: kCMTimeZero];
+}
+
 @end
