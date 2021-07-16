@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		81CC838626A18E8C0085B5AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC838526A18E8C0085B5AB /* AppDelegate.m */; };
-		81CC838926A18E8C0085B5AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC838826A18E8C0085B5AB /* ViewController.m */; };
 		81CC838B26A18E8E0085B5AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81CC838A26A18E8E0085B5AB /* Assets.xcassets */; };
 		81CC839126A18E8E0085B5AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC839026A18E8E0085B5AB /* main.m */; };
 		81CC839C26A18E8E0085B5AB /* AdvPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC839B26A18E8E0085B5AB /* AdvPlayerTests.m */; };
@@ -41,8 +40,6 @@
 		81CC838126A18E8C0085B5AB /* AdvPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81CC838426A18E8C0085B5AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		81CC838526A18E8C0085B5AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		81CC838726A18E8C0085B5AB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		81CC838826A18E8C0085B5AB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		81CC838A26A18E8E0085B5AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81CC838F26A18E8E0085B5AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81CC839026A18E8E0085B5AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -115,8 +112,6 @@
 				81CC83B626A18FDC0085B5AB /* MainMenu.xib */,
 				81CC838426A18E8C0085B5AB /* AppDelegate.h */,
 				81CC838526A18E8C0085B5AB /* AppDelegate.m */,
-				81CC838726A18E8C0085B5AB /* ViewController.h */,
-				81CC838826A18E8C0085B5AB /* ViewController.m */,
 				81CC838A26A18E8E0085B5AB /* Assets.xcassets */,
 				81CC838F26A18E8E0085B5AB /* Info.plist */,
 				81CC839026A18E8E0085B5AB /* main.m */,
@@ -280,7 +275,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81CC83C126A1953F0085B5AB /* PSVR.m in Sources */,
-				81CC838926A18E8C0085B5AB /* ViewController.m in Sources */,
 				81CC839126A18E8E0085B5AB /* main.m in Sources */,
 				81CC83BB26A191750085B5AB /* EyeView.m in Sources */,
 				81CC838626A18E8C0085B5AB /* AppDelegate.m in Sources */,
