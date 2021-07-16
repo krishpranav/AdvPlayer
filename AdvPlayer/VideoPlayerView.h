@@ -22,3 +22,11 @@
 @property (nonatomic, readonly) VideoPlayerViewProjectionMethod * projectionMethod;
 
 @end
+
+@interface VideoPlayerViewProjectMethod : NSObject
+
+@property (nonatomic, readonly) NSString * name;
+@property (nonatomic, readonly) void (^eyeLayerHandler)(CALayer * eyeLayer, int eye, CGSize contentSize, AVPlayerLayer * playerLayer, EyeView * eyeView);
+
+
+@end
