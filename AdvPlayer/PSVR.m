@@ -30,5 +30,24 @@ static void PSVR_HID_InputValueCallback(void * inContext, IOReturn inResult, voi
     return sharedStreamer;
 }
 
++ (NSScreen *) screen {
+    return [NSScreen mainScreen];
+}
+
+- (id) init {
+    if((self = [super init])) {
+        
+        IOHIDManagerRef managerRef = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeSeizeDevice);
+        IOHIDManagerScheduleWithRunLoop(managerRef, CFRunLoopGetMain(), kCFRunLoopDefaultMode);
+        IOHIDManagerSetDeviceMatching(managerRef, (__bridge CFMutableDictionaryRef)@{
+                                                                                     @kIOHIDVendorIDKey: @(0x054C),
+                                                                                     @kIOHIDProductIDKey: @(0x09AF)
+                                                                                     });
+        IOHIDManagerRegisterInputValueCallback(managerRef, PSVR_HID_InputValueCallback, (__bridge void *)(self));
+        IOHIDManagerOpen(managerRef, 0);
+        
+    }
+    return self;
+}
 
 @end
