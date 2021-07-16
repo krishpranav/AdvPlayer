@@ -6,8 +6,19 @@
 //  Copyright © 2021 krisna pranav. All rights reserved.
 //
 
-#ifndef PSVR_h
-#define PSVR_h
+// imports
+#import <Cocoa/Cocoa.h>
 
 
-#endif /* PSVR_h */
+@interface PSVR : NSObject
+
++ (instancetype) sharedInstance;
+
++ (NSScreen *) screen;
+
+@end
+
+
+extern NSString * const PSVRDataReceivedNotification;
+extern NSString * const PSVRDataReceivedNotificationDataKey;
+
