@@ -144,6 +144,26 @@
     }
 }
 
+- (void) mouseDragged: (NSEvent *) event {
+    float speed = 0.3;
+    
+    leftView.yaw += (event.deltaX * speed);
+    leftView.pitch += (event.deltaY * speed);
+    
+    [self syncRightCameraFromLeft];
+}
+
+- (void) psvrDataReceivedNotification: (NSNotification *) notification {
+    PSVRData * data = notification.userInfo[PSVRDataReceivedNotificationDataKey];
+    
+    float accelerationCoef = 0.00003125;
+    
+    leftView.yaw += (data.yawAcceleration * accelerationCoef);
+    leftView.pitch += (data.pitchAcceleration * accelerationCoef);
+    
+    [self syncRightCameraFromLeft];
+}
+
 - (void) syncRightCameraFromLeft {
     rightView.yaw = leftView.yaw;
     rightView.pitch = leftView.pitch;
