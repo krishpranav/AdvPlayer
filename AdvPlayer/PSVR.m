@@ -17,3 +17,18 @@
 static void PSVR_HID_InputValueCallback(void * inContext, IOReturn inResult, void * inSender, IOHIDValueRef inValueRef) {
     [(__bridge PSVR *)inContext _processHIDValue: inValueRef];
 }
+
+
+@implementation PSVR
+
++ (instancetype) sharedInstance {
+    static dispatch_once_t onceToken;
+    static PSVR * sharedStreamer;
+    dispatch_once(&onceToken, ^{
+        sharedStreamer = [[PSVR alloc] init];
+    });
+    return sharedStreamer;
+}
+
+
+@end
