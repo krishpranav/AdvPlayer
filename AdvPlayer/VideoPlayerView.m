@@ -144,4 +144,15 @@
     }
 }
 
+- (void) syncRightCameraFromLeft {
+    rightView.yaw = leftView.yaw;
+    rightView.pitch = leftView.pitch;
+    rightView.roll = leftView.roll;
+}
+
+void dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
+
 @end
