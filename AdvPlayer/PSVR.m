@@ -68,3 +68,19 @@ static void PSVR_HID_InputValueCallback(void * inContext, IOReturn inResult, voi
 
 NSString * const PSVRDataReceivedNotification = @"PSVRDataReceivedNotification";
 NSString * const PSVRDataReceivedNotificationDataKey = @"PSVRDataReceivedNotificationDataKey";
+
+@implementation PSVRData
+
+- (id) initWithData: (NSData *) data {
+    if((self = [super init])) {
+        _rawData = data;
+    }
+    return self;
+    
+}
+
+- (int16_t) yawAcceleration {
+    return ([self readInt16: 20] + [self readInt16: 36]);
+}
+
+@end
